@@ -1,10 +1,8 @@
 import React from "react";
-import { PersonInformation, Theme } from "../../../context";
 
-const Information = () => {
-  let userInformation = React.useContext(PersonInformation);
-  let { color } = React.useContext(Theme);
-  let arrPersonInformation = Object.entries(userInformation);
+const Information = ({personinformation , color}) => {
+
+  let arrPersonInformation = Object.entries(personinformation);
 
   return (
     <ul className="info-list">

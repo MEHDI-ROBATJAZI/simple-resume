@@ -6,24 +6,31 @@ import ShowFullName from "./header/introductionSection/fullName";
 import SocialLinksComponent from "./header/introductionSection/socialLinks";
 import Specialities from "./header/introductionSection/specialities";
 
-import { DataMode , Theme } from "../../context";
+import propTypes from 'prop-types'
 
-const App = () => {
-
-  const setDataMode = React.useContext(DataMode)
-  const {color,setColor} = React.useContext(Theme)
-
-
+const App = (
+  {
+    fullName,
+    avatar,
+    specialities,
+    socialLinks,
+    aboutme,
+    personinformation,
+    setDatamode,
+    setColor,
+    color
+  }  
+) => {
 
   return (
     <>
       <span style={{padding:"0 20px"}}>
-        <label style={{padding:"0 8px"}}>default</label>
-        <input type="radio" name="modeData" value="defaultInfo" onChange={(e)=>setDataMode(e.target.value)} />
+        <label htmlFor="fake"  style={{padding:"0 8px"}}>fake</label>
+        <input id="fake" type="radio" name="modeData" value="fakeInfo" onChange={(e)=>setDatamode(e.target.value)} />
       </span>
       <span>
-        <label style={{padding:"0 8px"}}>mahdi</label>
-        <input type="radio" name="modeData" value="mahdiInfo" onChange={(e)=>setDataMode(e.target.value)} />
+        <label htmlFor="mahdi" style={{padding:"0 8px"}}>mahdi</label>
+        <input id="mahdi" type="radio" name="modeData" value="mahdiInfo" onChange={(e)=>setDatamode(e.target.value)} />
       </span>
 
       <span>
@@ -36,18 +43,18 @@ const App = () => {
             <div className="page-header" style={{backgroundColor:color}}>
               <div className="row">
                 <div className="col-sm-4 col-md-4 col-lg-4">
-                  <AvatarSection />
+                  <AvatarSection avatar={avatar} />
                 </div>
 
                 <div className="col-sm-8 col-md-8 col-lg-8">
                   <div className="title-block">
-                    <ShowFullName />
+                    <ShowFullName fullName={fullName} />
                     <div className="owl-carousel text-rotation">
-                      <Specialities />
+                      <Specialities specialities={specialities} />
                     </div>
                   </div>
 
-                  <SocialLinksComponent />
+                  <SocialLinksComponent socialLinks={socialLinks} />
                 </div>
               </div>
             </div>
@@ -55,11 +62,11 @@ const App = () => {
             <div className="page-content">
               <div className="row">
                 <div className="col-sm-6 col-md-6 col-lg-6">
-                  <AboutMeComponent />
+                  <AboutMeComponent aboutme = {aboutme} color={color} />
                 </div>
 
                 <div className="col-sm-6 col-md-6 col-lg-6">
-                  <Information />
+                  <Information personinformation={personinformation} color={color}  />
                 </div>
               </div>
             </div>
@@ -71,3 +78,49 @@ const App = () => {
 };
 
 export default App;
+
+
+
+App.propTypes = {
+  fullName : propTypes.string , 
+  specialities : propTypes.arrayOf(propTypes.string),
+  socialLinks : propTypes.shape({
+    twitter:propTypes.string,
+    youtube:propTypes.string,
+    instagram:propTypes.string,
+    facebook:propTypes.string
+  }),
+  aboutme:propTypes.string,
+  personinformation:propTypes.shape({
+    Age: propTypes.number,
+    Residence: propTypes.string,
+    Address: propTypes.string,
+    "e-mail": propTypes.string,
+    Phone: propTypes.string,
+    Freelance: propTypes.string,
+  })
+
+}
+
+
+App.defaultProps = {
+  fullName: "Alex Smith",
+  specialities: ["Web Designer", "Frontend-developer"],
+  socialLinks: {
+    twitter: "#",
+    youtube: "#",
+    instagram: "#",
+    facebook: "#",
+  },
+  aboutme: ` Hello! I’m Alex Smith. Lorem ipsum dolor sit amet, consectetur
+  adipiscing elit. Aenean fermentum ullamcorper sem, at placerat dolor
+  volutpat ac. Duis nulla enim, condimentum nec ultricies.`,
+  personinformation: {
+    Age: 29,
+    Residence: "USA",
+    Address: "Los Angles - USA",
+    "e-mail": "email@example.com",
+    Phone: "+0123 123 456 789",
+    Freelance: "Available",
+  },
+}

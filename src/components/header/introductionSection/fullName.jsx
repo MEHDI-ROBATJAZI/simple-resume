@@ -1,8 +1,8 @@
-import React,{useContext} from 'react'
-import {FullName} from '../../../../context'
-const ShowFullName = () => {
+import React from 'react'
 
-  const fullName = useContext(FullName)
+const ShowFullName = ({fullName}) => {
+
+
 
   return (
     <div>

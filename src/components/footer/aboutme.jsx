@@ -1,12 +1,8 @@
 import React from "react";
-import {AboutMe,Theme} from '../../../context'
 
+function AboutMeComponent ({aboutme,color}) {
 
-function AboutMeComponent () {
-
-  const aboutme = React.useContext(AboutMe)
-  const {color} = React.useContext(Theme)
-
+ 
   return (
     <div className="about-me">
       <div className="block-title">

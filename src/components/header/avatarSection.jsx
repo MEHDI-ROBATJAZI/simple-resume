@@ -1,17 +1,13 @@
-import React,{useContext} from "react";
-import { AvatarLink } from "../../../context";
+import React from "react";
 
-const AvatarSection = () => {
-
-  
-  const Avatar = useContext(AvatarLink)
-
+const AvatarSection = ({avatar}) => {
 
   return (
     <div className="photo">
-      <img src={Avatar} alt="logo" />
+      <img src={avatar} alt="logo" />
     </div>
   );
 };
+
 
 export default AvatarSection;

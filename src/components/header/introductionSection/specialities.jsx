@@ -1,9 +1,7 @@
 import React from "react";
-import {Abilities} from '../../../../context'
 
-const Specialities = () => {
+const Specialities = ({specialities}) => {
 
-  const specialities = React.useContext(Abilities)
 
   return (
     <>

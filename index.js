@@ -1,25 +1,14 @@
-import React, { useState } from "react";
+import React, { Fragment ,  useState } from "react";
 import ReactDOM from "react-dom";
 import App from "./src/components/app";
 import DefaultAvatar from "./images/photo.png";
 import AvatarMahdi from "./images/mahdi.png";
 
-import {
-  AvatarLink,
-  FullName,
-  Abilities,
-  SocialLinks,
-  AboutMe,
-  PersonInformation,
-  DataMode,
-  Theme,
-} from "./context";
-
 //////////////////////////////////////////////////////////////////////
-const defaultData = {
+const fakeData = {
   Avatar: DefaultAvatar,
   fullName: "Alex Smith",
-  specilities: ["Web Designer", "Frontend-developer"],
+  specialities: ["Web Designer", "Frontend-developer"],
   socialLinks: {
     twitter: "#",
     youtube: "#",
@@ -42,7 +31,7 @@ const defaultData = {
 const mahdiData = {
   Avatar: AvatarMahdi,
   fullName: "Mahdi Robatjazi",
-  specilities: ["Web Designer", "Software-Enginner", "Frontend-developer"],
+  specialities: ["Web Designer", "Software-Enginner", "Frontend-developer"],
   socialLinks: {
     twitter: "https://twitter.com/",
     youtube: "https://youtube.com/",
@@ -62,37 +51,31 @@ const mahdiData = {
 };
 /////////////////////////////////////////////////////////////////////
 const Container = () => {
-  const [datamode, setDatamode] = React.useState("defaultInfo");
+  const [datamode, setDatamode] = React.useState("");
 
   let data = {};
 
-  if (datamode === "defaultInfo") {
-    data = defaultData;
-  } else {
-    data = mahdiData;
-  }
+  datamode === "fakeInfo" ?  data = fakeData : data = mahdiData;
 
   const [color, setColor] = React.useState({ color: "#ffc107" });
 
+  console.log(data)
+
   return (
-    <DataMode.Provider value={setDatamode}>
-      <Theme.Provider value={{ color, setColor }}>
-        <AvatarLink.Provider value={data.Avatar}>
-          <FullName.Provider value={data.fullName}>
-            <Abilities.Provider value={data.specilities}>
-              <SocialLinks.Provider value={data.socialLinks}>
-                <AboutMe.Provider value={data.aboutme}>
-                  <PersonInformation.Provider value={data.personinformation}>
-                    <App />
-                  </PersonInformation.Provider>
-                </AboutMe.Provider>
-              </SocialLinks.Provider>
-            </Abilities.Provider>
-          </FullName.Provider>
-        </AvatarLink.Provider>
-      </Theme.Provider>
-    </DataMode.Provider>
+    <Fragment>
+      <App 
+        fullName = {data.fullName}
+        avatar = {data.Avatar}
+        specialities = {data.specialities}
+        socialLinks = {data.socialLinks}
+        aboutme = {data.aboutme}
+        personinformation = {data.personinformation}
+        setDatamode={setDatamode}
+        setColor={setColor}
+        color={color}
+      />
+    </Fragment>
   );
-};
+}
 
 ReactDOM.render(<Container />, document.getElementById("root"));

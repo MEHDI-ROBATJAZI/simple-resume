@@ -1,11 +1,9 @@
 import React from 'react'
-import { SocialLinks } from '../../../../context'
 
 
 
-const SocialLinksComponent = () => {
+const SocialLinksComponent = ({socialLinks}) => {
 
-  const socialLinks = React.useContext(SocialLinks)
 
   return (
     <div className="social-links">
