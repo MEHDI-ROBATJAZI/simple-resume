@@ -65,7 +65,6 @@ const Container = () => {
   const [datamode, setDatamode] = React.useState("defaultInfo");
   const [color, setColor] = React.useState({ color: "#ffc107" });
   
-  
   let data = datamode === "defaultInfo" ? defaultData : mahdiData
 
 
