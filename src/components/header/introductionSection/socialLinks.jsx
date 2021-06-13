@@ -1,18 +1,26 @@
-import React from 'react'
+import React , {Component} from 'react'
 
 
+class SocialLinksComponent extends Component{
 
-const SocialLinksComponent = ({socialLinks}) => {
+  constructor(props){
+    super(props)
+  }
 
+  render(){
+    let socialLinks = Object.entries(this.props.socialLinks)
+    return(
+      <div className="social-links">
+        {
+          socialLinks.map(([name,source])=>(
+            
+            <a key={name} target="_blank" href={source}><i className={`fa fa-${name}`}></i></a>
 
-  return (
-    <div className="social-links">
-      <a href={socialLinks.twitter}><i className="fa fa-twitter"></i></a>
-      <a href={socialLinks.facebook}><i className="fa fa-facebook"></i></a>
-      <a href={socialLinks.instagram}><i className="fa fa-instagram"></i></a>
-      <a href={socialLinks.youtube}><i className="fa fa-youtube"></i></a>
-    </div>  
-  )
+          ))
+        }
+
+      </div>    
+    )
+  }
 }
-
 export default SocialLinksComponent

@@ -50,32 +50,57 @@ const mahdiData = {
   },
 };
 /////////////////////////////////////////////////////////////////////
-const Container = () => {
-  const [datamode, setDatamode] = React.useState("");
 
-  let data = {};
 
-  datamode === "fakeInfo" ?  data = fakeData : data = mahdiData;
 
-  const [color, setColor] = React.useState({ color: "#ffc107" });
+class Container extends React.Component{
+  constructor(props){
+    super(props)
+    this.state = {
+      datamode : "",
+      color : ""
+    }
+    this.setDatamode = this.setDatamode.bind(this)
+    this.setColor = this.setColor.bind(this)
+  }
 
-  console.log(data)
+  setDatamode(value){
+    
+    this.setState({
+      datamode:value
+    })
+  }
 
-  return (
-    <Fragment>
-      <App 
-        fullName = {data.fullName}
-        avatar = {data.Avatar}
-        specialities = {data.specialities}
-        socialLinks = {data.socialLinks}
-        aboutme = {data.aboutme}
-        personinformation = {data.personinformation}
-        setDatamode={setDatamode}
-        setColor={setColor}
-        color={color}
-      />
-    </Fragment>
-  );
+  setColor(value){
+    
+    this.setState({
+      color:value
+    })
+  }
+
+
+  render(){
+
+    let data = {};
+    this.state.datamode === "fakeInfo" ?  data = fakeData : data = mahdiData;
+
+    return(
+      <Fragment>
+        <App 
+          fullName = {data.fullName}
+          avatar = {data.Avatar}
+          specialities = {data.specialities}
+          socialLinks = {data.socialLinks}
+          aboutme = {data.aboutme}
+          personinformation = {data.personinformation}
+          setDatamode={this.setDatamode}
+          setColor={this.setColor}
+          color={this.state.color}
+        />
+      </Fragment>
+    )
+  }
 }
+
 
 ReactDOM.render(<Container />, document.getElementById("root"));

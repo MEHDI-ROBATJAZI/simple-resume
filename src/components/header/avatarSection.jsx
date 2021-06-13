@@ -1,12 +1,21 @@
-import React from "react";
+import React , {Component} from "react";
 
-const AvatarSection = ({avatar}) => {
+class AvatarSection extends Component{
 
-  return (
-    <div className="photo">
-      <img src={avatar} alt="logo" />
-    </div>
-  );
+  constructor(props){
+    super(props)
+  }
+
+
+
+
+  render(){
+    return (
+      <div className="photo">
+        <img src={this.props.avatar} alt="logo" />
+      </div>
+    );
+  }
 };
 
 

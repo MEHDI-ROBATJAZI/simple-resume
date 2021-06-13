@@ -1,4 +1,4 @@
-import React from "react";
+import React , {Component} from "react";
 import AboutMeComponent from "./footer/aboutme";
 import Information from "./footer/information";
 import AvatarSection from "./header/avatarSection";
@@ -8,74 +8,69 @@ import Specialities from "./header/introductionSection/specialities";
 
 import propTypes from 'prop-types'
 
-const App = (
-  {
-    fullName,
-    avatar,
-    specialities,
-    socialLinks,
-    aboutme,
-    personinformation,
-    setDatamode,
-    setColor,
-    color
-  }  
-) => {
+class App extends Component{
+  constructor(props){
+    super(props)
+  }
 
-  return (
-    <>
+
+  render(){
+    return(
+      <>
       <span style={{padding:"0 20px"}}>
         <label htmlFor="fake"  style={{padding:"0 8px"}}>fake</label>
-        <input id="fake" type="radio" name="modeData" value="fakeInfo" onChange={(e)=>setDatamode(e.target.value)} />
+        <input id="fake" type="radio" name="modeData" value="fakeInfo" onChange={(e)=>this.props.setDatamode(e.target.value)} />
       </span>
       <span>
         <label htmlFor="mahdi" style={{padding:"0 8px"}}>mahdi</label>
-        <input id="mahdi" type="radio" name="modeData" value="mahdiInfo" onChange={(e)=>setDatamode(e.target.value)} />
+        <input id="mahdi" type="radio" name="modeData" value="mahdiInfo" onChange={(e)=>this.props.setDatamode(e.target.value)} />
       </span>
 
       <span>
-        <input type="color" defaultValue="#ffc107" onChange={(e)=>setColor(e.target.value)} />
+        <input type="color" defaultValue="#ffc107" onChange={(e)=>this.props.setColor(e.target.value)} />
       </span>
 
       <div className="material-template">
-        <main className="pt-page pt-page-current">
-          <div className="section-inner start-page-content">
-            <div className="page-header" style={{backgroundColor:color}}>
-              <div className="row">
-                <div className="col-sm-4 col-md-4 col-lg-4">
-                  <AvatarSection avatar={avatar} />
-                </div>
+         <main className="pt-page pt-page-current">
+           <div className="section-inner start-page-content">
+             <div className="page-header" style={{backgroundColor:this.props.color}}>
+               <div className="row">
+                 <div className="col-sm-4 col-md-4 col-lg-4">
+                   <AvatarSection avatar={this.props.avatar} />
+                 </div> 
 
-                <div className="col-sm-8 col-md-8 col-lg-8">
-                  <div className="title-block">
-                    <ShowFullName fullName={fullName} />
-                    <div className="owl-carousel text-rotation">
-                      <Specialities specialities={specialities} />
-                    </div>
-                  </div>
+               <div className="col-sm-8 col-md-8 col-lg-8">
+                 <div className="title-block">
+                   <ShowFullName fullName={this.props.fullName} />
+                   <div className="owl-carousel text-rotation">
+                     <Specialities specialities={this.props.specialities} />
+                   </div>
+                 </div>
 
-                  <SocialLinksComponent socialLinks={socialLinks} />
-                </div>
-              </div>
-            </div>
+                 <SocialLinksComponent socialLinks={this.props.socialLinks} />
+               </div>
+             </div>
+           </div>
 
-            <div className="page-content">
-              <div className="row">
-                <div className="col-sm-6 col-md-6 col-lg-6">
-                  <AboutMeComponent aboutme = {aboutme} color={color} />
-                </div>
+           <div className="page-content">
+             <div className="row">
+               <div className="col-sm-6 col-md-6 col-lg-6">
+                 <AboutMeComponent aboutme = {this.props.aboutme} color={this.props.color} />
+               </div>
 
-                <div className="col-sm-6 col-md-6 col-lg-6">
-                  <Information personinformation={personinformation} color={color}  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </main>
+               <div className="col-sm-6 col-md-6 col-lg-6">
+                 <Information personinformation={this.props.personinformation} color={this.props.color}  />
+               </div>
+             </div>
+           </div>
+         </div>
+       </main>
       </div>
-    </>
-  );
-};
+     </>
+    )
+  }
+}
+
 
 export default App;
 
