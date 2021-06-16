@@ -1,8 +1,9 @@
 import React from 'react'
+import {useSelector} from 'react-redux'
 
-const ShowFullName = ({fullName}) => {
+const ShowFullName = () => {
 
-
+  const {fullName} = useSelector(state=>state.data)
 
   return (
     <div>
