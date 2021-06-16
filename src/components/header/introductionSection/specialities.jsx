@@ -1,7 +1,9 @@
 import React from "react";
+import {useSelector} from 'react-redux'
 
-const Specialities = ({specialities}) => {
+const Specialities = () => {
 
+  const {specialities} = useSelector(state=>state.data)
 
   return (
     <>

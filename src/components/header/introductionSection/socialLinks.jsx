@@ -1,9 +1,10 @@
 import React from 'react'
+import {useSelector} from 'react-redux'
 
 
+const SocialLinksComponent = () => {
 
-const SocialLinksComponent = ({socialLinks}) => {
-
+const {socialLinks} = useSelector(state=>state.data)
 
   return (
     <div className="social-links">

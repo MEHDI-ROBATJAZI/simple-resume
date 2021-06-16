@@ -1,10 +1,13 @@
 import React from "react";
+import {useSelector} from 'react-redux'
 
-const AvatarSection = ({avatar}) => {
+const AvatarSection = () => {
+
+  const {Avatar}  = useSelector(state =>state.data)
 
   return (
     <div className="photo">
-      <img src={avatar} alt="logo" />
+      <img src={Avatar} alt="logo" />
     </div>
   );
 };
